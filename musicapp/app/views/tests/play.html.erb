@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+  <b> <font size=5> <%= @test.name %> </font> </b>
+<br>
+
+  <b> <font size=2> <%= @test.genre %> </font> </b>
+
+<br>
+  <font size=1 color="gray"> Posted on <%= @test.created_at.strftime("%d %b %y") %> </font>
+
+<p> 
+  <font color="blue">  <%= User.find(@test.user_id).name %> </font>
+</p> 
+
+
+<p>
+
+  <table>
+    <thead>
+      <tr>
+	<th colspan="1"></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @test.songs.each do |song| %>
+      <tr>
+	<td> <%= song.name %> by <%= song.artist %> </td>
+<tr>  </tr>
+
+<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/306953430&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+
+      </tr>
+      <% end %>
+</p>
+</tbody>
+</table>
+ 
+<%= link_to 'Back', tests_path %>

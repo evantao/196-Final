@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<% if logged_in? %>
+<h2> Welcome, <%= current_user.name %> </h2>
+<% end %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Score </th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+	<td><%= user.high_score %></td>
+	<td><%= link_to user.name + "'s Tests", user %></td>
+	<% if logged_in? && session[:user_id] == user.id %>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

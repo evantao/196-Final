@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h2>  <%= @user.name + "'s Tests" %></h2>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Genre </th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @user.tests.empty? %> 
+    <p> No tests here! </p>
+    <% else %>
+    <% @user.tests.each do |test| %>
+      <tr>
+        <td><%= test.name %></td>
+	<td><%= test.genre %></td>
+	<td><%= link_to 'Play', test_play_path(test) %></td>
+	<% if logged_in? && session[:user_id] == @user.id %>
+        <td><%= link_to 'Edit', edit_test_path(test) %></td>
+        <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+  
+
+</p>
+
+
+<%= link_to 'Back', users_path %>
+

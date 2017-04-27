@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @test.name %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @test.genre %>
+</p>
+
+
+<p>
+  <strong>Songs:</strong>
+
+  <% if @test.songs.empty? %>
+  <p> No songs here yet! </p> 
+  <% else %>
+  <table>
+    <thead>
+      <tr>
+	<th>Name</th>
+	<th>Artist</th>
+	<th colspan="2"></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @test.songs.each do |song| %>
+      <tr>
+	<td> <%= song.name %> </td>
+	<td> <%= song.artist %> </td>
+	<% if logged_in? && current_user.id == @test.user_id %>
+	<td> <%= link_to 'Remove Song', test_delete_song_path(@test, song), method: :delete, data: {confirm: 'Are you sure?' } %> </td>
+	<td> <iframe src="https://embed.spotify.com/?uri=<%=song.spotify_uri%>" width="150" height="100" frameborder="0" allowtransparency="true"></iframe> </td>
+	<% end %>
+      </tr>
+      <% end %>
+</p>
+</tbody>
+</table>
+<% end %>
+ 
+<% if logged_in? && current_user.id == @test.user_id %>
+<%= link_to 'Edit Test Name/Genre', edit_test_path(@test) %> |
+<%= link_to 'Add Song', test_add_song_path(@test) %> |
+<% end %>
+<%= link_to 'Back', tests_path %>

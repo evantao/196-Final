@@ -1,0 +1,15 @@
+<nav class="navbar navbar-default navbar-fixed-top" >
+  <a class="navbar-brand" href="/">MusicApp</a>
+  <a class="nav-item" href="/users">High Scores</a>
+  <a class="nav-item" href="/tests">Play Tests</a>
+  <% if logged_in? && session[:user_id] == current_user.id %>
+  
+  <%= link_to current_user.name + "'s Tests", user_path(current_user.id) %>
+  <%= link_to 'Log out', log_out_path %>
+  <% else %> 
+  <%= link_to 'Log in', log_in_path %> 
+  <%= link_to 'Sign up', new_user_path %>
+  <% end %>
+  <span class="nav-sessions">
+  </span>
+</nav>
