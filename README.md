@@ -1,0 +1,1 @@
+A Rails album quiz -- test your knowledge of album covers by creating an account, making quizzes and trying out other people's quizzes!
