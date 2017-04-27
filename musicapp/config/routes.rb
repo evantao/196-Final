@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :songs_tests
+  resources :albums_tests
   resources :tests
-  resources :songs
+  resources :albums
   resources :users
 
   get 'login' => 'sessions#login', :as => 'log_in' 
@@ -10,9 +10,10 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create', :as => 'create_login'
 
   get 'tests/:id/play' => 'tests#play', :as => 'test_play' 
-  get 'tests/:id/song' => 'tests#add_song', :as => 'test_add_song'
-  post 'tests/:id/song' => 'tests#create_song', :as => 'test_create_song'
-  delete 'tests/:id/song/:song_id' => 'tests#delete_song', :as => 'test_delete_song'
+  post 'tests/:id/play' => 'tests#submit', :as => 'test_submit'
+  get 'tests/:id/album' => 'tests#add_album', :as => 'test_add_album'
+  post 'tests/:id/album' => 'tests#create_album', :as => 'test_create_album'
+  delete 'tests/:id/album/:album_id' => 'tests#delete_album', :as => 'test_delete_album'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

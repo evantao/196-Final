@@ -2,29 +2,34 @@
 
 <p>
 
-<h4> <%= @user.name + "'s Tests" %></h4>
+<h4> <%= @user.name + "'s Profile" %></h4>
 
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Genre </th>
-      <th colspan="2"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% if @user.tests.empty? %> 
-    <p> No tests here! </p>
+    <tr> 
+      <td> No tests here! </td>
+    </tr>
     <% else %>
     <% @user.tests.each do |test| %>
       <tr>
-        <td><%= test.name %></td>
-	<td><%= test.genre %></td>
+        <td><%= link_to test.name, test_path %></td>
+	<% if test.albums.empty? %>
+	<td> No albums </td>
+	<% else %>
 	<td><%= link_to 'Play', test_play_path(test) %></td>
+<% end %>
 	<% if logged_in? && session[:user_id] == @user.id %>
+	<td> <%= link_to 'Add Album', test_add_album_path(test) %> </td>
         <td><%= link_to 'Edit', edit_test_path(test) %></td>
-        <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	<% end %>
       </tr>
     <% end %>
@@ -32,7 +37,10 @@
   </tbody>
 </table>
 
-  
+<% if logged_in? && session[:user_id] == @user.id %>
+<%= link_to 'Edit Profile', edit_user_path(@user) %> | 
+<%= link_to 'Delete Profile', @user, method: :delete, data: { confirm: 'Are you sure? ' } %>
+<% end %>
 
 </p>
 

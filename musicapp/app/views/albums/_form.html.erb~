@@ -1,9 +1,10 @@
-<%= form_for @album, :url => test_create_album_path, :method => :POST do |f| %>
-  <% if @album.errors.any? %>
+<%= form_for(@song) do |f| %>
+  <% if @song.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
       <ul>
-      <% @album.errors.full_messages.each do |message| %>
+      <% @song.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -19,6 +20,6 @@
     <%= f.text_field :artist %>
   </div>
   <div class="actions">
-    <%= f.submit 'Add Album' %>
+    <%= f.submit %>
   </div>
 <% end %>

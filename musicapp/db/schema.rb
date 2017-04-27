@@ -13,26 +13,25 @@
 
 ActiveRecord::Schema.define(version: 20170426012052) do
 
-  create_table "songs", force: :cascade do |t|
+  create_table "albums", force: :cascade do |t|
     t.string   "name"
     t.string   "artist"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "songs_tests", force: :cascade do |t|
-    t.integer  "song_id"
+  create_table "albums_tests", force: :cascade do |t|
+    t.integer  "album_id"
     t.integer  "test_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "songs_tests", ["song_id"], name: "index_songs_tests_on_song_id"
-  add_index "songs_tests", ["test_id"], name: "index_songs_tests_on_test_id"
+  add_index "albums_tests", ["album_id"], name: "index_albums_tests_on_album_id"
+  add_index "albums_tests", ["test_id"], name: "index_albums_tests_on_test_id"
 
   create_table "tests", force: :cascade do |t|
     t.string   "name"
-    t.integer  "genre"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

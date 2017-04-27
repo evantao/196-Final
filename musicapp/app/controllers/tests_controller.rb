@@ -17,48 +17,55 @@ class TestsController < ApplicationController
     @test = Test.find(params[:id])
   end
 
+  # POST /tests/1/play
+  def submit
+    respond_to do |format| 
+      format.html { redirect_to tests_path, notice: "You won!" } 
+    end    
+  end
+
   # GET /tests/new
   def new
     @test = Test.new
   end
 
-  # GET /tests/1/songs
-  def add_song
+  # GET /tests/1/albums
+  def add_album
     @test = Test.find(params[:id])
-    @song = Song.new
+    @album = Album.new
   end
 
-  # POST /tests/1/songs 
-  def create_song
+  # POST /tests/1/albums 
+  def create_album
     @test = Test.find(params[:id])
-    new_name = params[:song][:name]
-    new_artist = params[:song][:artist]
+    new_name = params[:album][:name]
+    new_artist = params[:album][:artist]
 
-    if (Song.exists?(name: new_name, artist: new_artist)) 
-      @song = Song.find_by(name: new_name, artist: new_artist)
+    if (Album.exists?(name: new_name, artist: new_artist)) 
+      @album = Album.find_by(name: new_name, artist: new_artist)
     else 
-      @song = Song.new(name: new_name, artist: new_artist)
+      @album = Album.new(name: new_name, artist: new_artist)
     end
 
     respond_to do |format| 
-      if @song.save
-        @test.songs << @song
-        format.html { redirect_to @test, notice: @song.name + ' by ' + @song.artist + ' was successfully added to ' + @test.name } 
+      if @album.save
+        @test.albums << @album
+        format.html { redirect_to @test, notice: @album.name + ' by ' + @album.artist + ' was successfully added to ' + @test.name } 
         format.json {render :show, status: :created, location: @test }
       else         
-        format.html { render :add_song } 
-        format.json { render json: @song.errors, status: :unprocessable_entity }
+        format.html { render :add_album } 
+        format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  #DELETE /tests/1/songs/1
-  def delete_song
+  #DELETE /tests/1/albums/1
+  def delete_album
     @test = Test.find(params[:id])
-    @song = Song.find(params[:song_id])
-    @test.songs.delete(@song)
+    @album = Album.find(params[:album_id])
+    @test.albums.delete(@album)
     respond_to do |format| 
-      format.html { redirect_to @test, notice: @song.name + ' by ' + @song.artist + ' was successfully removed from ' + @test.name } 
+      format.html { redirect_to @test, notice: @album.name + ' by ' + @album.artist + ' was successfully removed from ' + @test.name } 
     end
   end
   
@@ -115,6 +122,6 @@ class TestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_params
-      params.require(:test).permit(:name, :genre)
+      params.require(:test).permit(:name)
     end
 end

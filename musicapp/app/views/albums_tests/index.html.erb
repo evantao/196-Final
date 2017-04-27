@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Albums Tests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Album</th>
+      <th>Test</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albums_tests.each do |albums_test| %>
+      <tr>
+        <td><%= albums_test.album %></td>
+        <td><%= albums_test.test %></td>
+        <td><%= link_to 'Show', albums_test %></td>
+        <td><%= link_to 'Edit', edit_albums_test_path(albums_test) %></td>
+        <td><%= link_to 'Destroy', albums_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Albums test', new_albums_test_path %>

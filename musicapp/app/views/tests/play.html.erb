@@ -1,12 +1,11 @@
+<%= form_for @test, :url => test_submit_path, :method => :POST do |f| %>
+
 <p id="notice"><%= notice %></p>
 
-  <b> <font size=5> <%= @test.name %> </font> </b>
+<b> <font size=5> <%= @test.name %> </font> </b>
 <br>
 
-  <b> <font size=2> <%= @test.genre %> </font> </b>
-
-<br>
-  <font size=1 color="gray"> Posted on <%= @test.created_at.strftime("%d %b %y") %> </font>
+<font size=1 color="gray"> Posted on <%= @test.created_at.strftime("%d %b %y") %> </font>
 
 <p> 
   <font color="blue">  <%= User.find(@test.user_id).name %> </font>
@@ -23,17 +22,29 @@
     </thead>
     
     <tbody>
-      <% @test.songs.each do |song| %>
-      <tr>
-	<td> <%= song.name %> by <%= song.artist %> </td>
-<tr>  </tr>
+      <% @test.albums.each do |album| %>     
 
-<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/306953430&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
-
+<table align="center">
+      <tr>	
+	<td> <img src= <%= album.spotify_uri %> style="width:100px;height:100px;"></td>
       </tr>
-      <% end %>
-</p>
-</tbody>
 </table>
- 
+
+      <tr>
+	<% f.label :id %>
+	<td><font size="1"><%= collection_radio_buttons(album, :id, album.rand_four, :id, :album_format) %></font></td> <br> <br>
+
+    </tr>
+      <% end %> 
+    </tbody>
+</table>
+
+<br>
+
+
+<p align="center"> <%= f.submit "Submit" %> </p>
+
+</p>
+
 <%= link_to 'Back', tests_path %>
+<% end %>
