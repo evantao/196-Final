@@ -2,13 +2,13 @@
 
 <p id="notice"><%= notice %></p>
 
-<b> <font size=5> <%= @test.name %> </font> </b>
+<b> <font size=3> <%= @test.name %> </font> </b>
 <br>
 
 <font size=1 color="gray"> Posted on <%= @test.created_at.strftime("%d %b %y") %> </font>
 
 <p> 
-  <font color="blue">  <%= User.find(@test.user_id).name %> </font>
+  <font size=1 color="blue">  <%= User.find(@test.user_id).name %> </font>
 </p> 
 
 
@@ -31,20 +31,18 @@
 </table>
 
       <tr>
-	<% f.label :id %>
-	<td><font size="1"><%= collection_radio_buttons(album, :id, album.rand_four, :id, :album_format) %></font></td> <br> <br>
+	<% f.label :album_id %>
+	<td><font size="1"><%= collection_radio_buttons(album.id, :album_id , album.rand_four, :id, :album_format) %></font></td> <br> <br>
 
     </tr>
       <% end %> 
     </tbody>
 </table>
 
-<br>
-
 
 <p align="center"> <%= f.submit "Submit" %> </p>
 
-</p>
 
-<%= link_to 'Back', tests_path %>
+<font size=1><%= link_to 'All Tests', tests_path %></font>
+</p>
 <% end %>

@@ -1,0 +1,4 @@
+<h1 class="welcome-banner">Welcome to CIS 196's Facebook Lite!</h1>
+<% if logged_in? %>
+  Welcome <%= current_user.name %> 
+<% end %>

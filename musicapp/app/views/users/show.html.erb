@@ -4,7 +4,7 @@
 
 <h4> <%= @user.name + "'s Profile" %></h4>
 
-<table class="table">
+<font size=1><table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -35,12 +35,13 @@
     <% end %>
     <% end %>
   </tbody>
-</table>
+</table></font>
 
+<font size=1>
 <% if logged_in? && session[:user_id] == @user.id %>
 <%= link_to 'Edit Profile', edit_user_path(@user) %> | 
 <%= link_to 'Delete Profile', @user, method: :delete, data: { confirm: 'Are you sure? ' } %>
-<% end %>
+<% end %></font>
 
 </p>
 

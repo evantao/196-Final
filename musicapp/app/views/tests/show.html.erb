@@ -1,17 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @test.name %>
+  <strong><%= @test.name %></strong>
 </p>
-
-<p>
-  <strong>Albums:</strong>
 
   <% if @test.albums.empty? %>
   <p> No albums here yet! </p> 
   <% else %>
-  <table>
+
+<font size=1><table>
     <thead>
       <tr>
 	<th>Name</th>
@@ -31,10 +28,8 @@
 	<% end %>
       </tr>
       <% end %>
-</p>
 </tbody>
-</table>
+</table></font>
 <% end %>
 
-<br>
-<%= link_to 'All Tests', tests_path %>
+<font size=1><%= link_to 'All Tests', tests_path %></font>

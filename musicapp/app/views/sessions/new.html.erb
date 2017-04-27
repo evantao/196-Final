@@ -1,8 +1,8 @@
-<h1 id="log_in">Log In</h1>
+<h4 id="log_in">Log In</h4>
 
 <p id="notice"><%= notice %></p>
 
-<%= form_tag url: create_login_path do %>
+<font size="1"><%= form_tag url: create_login_path do %>
   <%= label_tag :name %><br>
   <%= text_field_tag :name %>
   <br>
@@ -10,4 +10,4 @@
   <%= password_field_tag :password %>
   <br>
   <%= submit_tag 'Log in' %>
-<% end %>
+<% end %></font>

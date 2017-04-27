@@ -19,8 +19,25 @@ class TestsController < ApplicationController
 
   # POST /tests/1/play
   def submit
+    score = 0
+    @test = Test.find(params[:id])
+    @test.albums.each do |album| 
+      unless params[album.id.to_s].nil? 
+        if params[album.id.to_s][:album_id] == album.id.to_s
+          score = score + 1
+        end
+      end
+    end
+    if logged_in? && score > current_user.high_score
+      current_user.update(high_score: score)
+    end
     respond_to do |format| 
-      format.html { redirect_to tests_path, notice: "You won!" } 
+      if score == 1
+        str_message = "You scored " + score.to_s + " point!"
+      else
+        str_message = "You scored " + score.to_s + " points!"
+      end
+      format.html { redirect_to users_path, notice: str_message } 
     end    
   end
 

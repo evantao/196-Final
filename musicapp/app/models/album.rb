@@ -8,7 +8,24 @@ class Album < ActiveRecord::Base
   validates :name, presence: true
   validates :artist, presence: true, uniqueness: { scope: :name, message: "Name and artist should be unique" }
 
+  validate :cap_name
+
+  validate :cap_artist
+
   validate :in_spotify
+
+  def cap_name
+    unless name.nil? || name.empty? || name[0].capitalize == name[0]
+      errors.add(:name, 'is not capitalized')
+    end
+  end
+
+  def cap_artist
+    unless artist.nil? || artist.empty? || artist[0].capitalize == artist[0]
+      errors.add(:artist, 'is not capitalized')
+    end
+  end
+
 
   def in_spotify
     if name.nil? || name.empty?
@@ -35,6 +52,10 @@ class Album < ActiveRecord::Base
     end
 
     ans.shuffle
+  end
+
+  def album_eq(album)
+    equal?(album) ? "true" : "false"
   end
 
   def spotify_uri

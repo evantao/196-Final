@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post 'tests/:id/album' => 'tests#create_album', :as => 'test_create_album'
   delete 'tests/:id/album/:album_id' => 'tests#delete_album', :as => 'test_delete_album'
 
+  root 'welcome#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
